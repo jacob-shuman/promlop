@@ -1,0 +1,28 @@
+{
+  "name": "promlop",
+  "version": "0.0.1",
+  "description": "An easy to use zero-dependency vanilla promise loop utility.",
+  "main": "build/index.js",
+  "types": "build/index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacob-shuman/promlop.git"
+  },
+  "keywords": [
+    "music",
+    "metadata",
+    "itunes"
+  ],
+  "author": "Jacob Shuman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacob-shuman/promlop/issues"
+  },
+  "homepage": "https://github.com/jacob-shuman/promlop#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
