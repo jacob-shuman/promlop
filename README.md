@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/jacob-shuman/promlop.svg?branch=master)](https://travis-ci.org/jacob-shuman/promlop)
 
-**WARNING: promlop is still early in development and stability is not guaranteed and functions may be altered frequently.**
+**WARNING: promlop is still early in development. Stability is not guaranteed and functions may be altered frequently.**
 
 ## Installation
 
