@@ -5,16 +5,18 @@
   "main": "build/index.js",
   "types": "build/index.js",
   "scripts": {
-    "test": "npm test"
+    "build": "tsc",
+    "test": "npm run build; jest",
+    "test-watch": "clear; jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jacob-shuman/promlop.git"
   },
   "keywords": [
-    "music",
-    "metadata",
-    "itunes"
+    "promise",
+    "loop",
+    "utility"
   ],
   "author": "Jacob Shuman",
   "license": "MIT",
@@ -23,6 +25,10 @@
   },
   "homepage": "https://github.com/jacob-shuman/promlop#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.2",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.6"
   }
 }
