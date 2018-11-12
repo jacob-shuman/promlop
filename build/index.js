@@ -41,26 +41,3 @@ function promIterate(options) {
     }));
 }
 exports.promIterate = promIterate;
-// export function promIterate<T>(options: {
-//   promises: Array<(context?: T) => Promise<{ context?: T }>>;
-//   context?: T;
-//   index?: number;
-// }): Promise<T> {
-//   return new Promise(async (resolve, reject) => {
-//     options.index = options.index || 0;
-//     if (options.index >= options.promises.length)
-//       reject("Index over number of promises");
-//     else if (options.index < 0) reject("Index cannot be less than 0");
-//     else if (options.index < options.promises.length) {
-//       const data: { context?: T } = await options.promises[options.index++](
-//         options.context
-//       );
-//       options.context = data.context;
-//       if (options.index < options.promises.length) {
-//         promIterate(options).then(() => resolve(options.context));
-//       } else {
-//         resolve(options.context);
-//       }
-//     }
-//   });
-// }
