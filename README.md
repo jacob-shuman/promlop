@@ -2,9 +2,33 @@
 
 > An easy to use zero-dependency vanilla promise loop utility.
 
+[![Build Status](https://travis-ci.org/jacob-shuman/promlop.svg?branch=master)](https://travis-ci.org/jacob-shuman/promlop)
+
+**WARNING: promlop is still early in development and stability is not guaranteed and functions may be altered frequently.**
+
+## Installation
+
+```bash
+$ npm install promlop
+```
+
+## Importing
+
+#### Commonjs
+
+```ts
+const promlop = require("promlop");
+```
+
+#### ES6
+
+```ts
+import { promLoop, promIterate } from "promlop";
+```
+
 ## Usage
 
-promlop currently provides 2 ways to loop through a series of promises.
+promlop currently supports 2 ways to loop through a series of promises.
 
 ### promLoop
 
