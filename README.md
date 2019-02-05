@@ -28,7 +28,7 @@ import { promLoop, promIterate } from "promlop";
 
 ## Usage
 
-promlop currently supports 2 ways to loop through a series of promises.
+promlop currently supports 3 ways to loop through a series of promises.
 
 ### promLoop
 
@@ -48,6 +48,34 @@ promlop
     }
   })
   .then(() => {})
+  .catch((err) => {});
+```
+
+### promUpdate
+
+```ts
+import { promUpdate } from "promlop";
+
+let start = 0;
+
+promUpdate<number>({
+  defaultValue: 0,
+  promise: async (value?: number) => {
+    console.log("Value is: " + value);
+
+    return {
+      continue: value! < 5, // Loop will continue until this value is false
+      update: true, // Value will update if true AND continue must be true
+      value: value! + 1 // Updated value (if update is true)
+    };
+  },
+  done: async (value?: number) => {
+    return value * 0.01;
+  }
+})
+  .then((value?: number) => {
+    console.log("Value changed from " + start + " to " + value + "!");
+  })
   .catch((err) => {});
 ```
 

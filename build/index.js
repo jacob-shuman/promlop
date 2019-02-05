@@ -18,6 +18,25 @@ function promLoop(options) {
     }));
 }
 exports.promLoop = promLoop;
+function promUpdate(options) {
+    return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+        const data = yield options.promise(options.defaultValue);
+        if (data.continue) {
+            if (data.update)
+                options.defaultValue = data.value;
+            promUpdate(options).then(() => resolve(data.value));
+        }
+        else {
+            options.done
+                ? options.done(options.defaultValue).then((value) => {
+                    console.log("VALUE IS " + value);
+                    resolve(value);
+                })
+                : resolve(data.value);
+        }
+    }));
+}
+exports.promUpdate = promUpdate;
 function promIterate(options) {
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
         options.index = options.index || 0;

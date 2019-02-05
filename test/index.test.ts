@@ -1,4 +1,4 @@
-import { promLoop, promIterate } from "../src/index";
+import { promLoop, promUpdate, promIterate } from "../src/index";
 
 describe("Loop", () => {
   test("Basic Loop", () => {
@@ -20,6 +20,56 @@ describe("Loop", () => {
 
       expect(test).toEqual(demo);
     });
+  });
+});
+
+describe("Update", () => {
+  test("Basic Update", () => {
+    expect.assertions(1);
+
+    return promUpdate<number>({
+      defaultValue: 0,
+      promise: async (value?: number) => {
+        console.log(`Current value is: ${value}`);
+        return {
+          continue: value! < 10,
+          update: true,
+          value: value! + 1
+        };
+      },
+      done: async (value?: number) => {
+        console.log("Value is " + value);
+        expect(value).toEqual(10);
+        return value;
+      }
+    });
+  });
+
+  test("Example Update", () => {
+    let start = 0;
+
+    return promUpdate<number>({
+      defaultValue: 0,
+      promise: async (value?: number) => {
+        console.log("Value is: " + value);
+
+        return {
+          continue: value! < 10, // Loop will continue until this value is false
+          update: true, // Value will update if true AND continue must be true
+          value: value! + 1 // Updated value (if update is true)
+        };
+      },
+      done: async (value?: number) => {
+        return 5;
+      }
+    })
+      .then((value?: number) => {
+        // console.log("Value changed from " + start + " to " + value + "!");
+        console.log(value);
+        console.log(value == 0.1);
+        expect(value!).toStrictEqual(5);
+      })
+      .catch((err) => {});
   });
 });
 
