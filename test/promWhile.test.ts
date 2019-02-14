@@ -1,28 +1,30 @@
-import {promDo} from "../src/index";
+import {promWhile} from "../src/index";
 
 describe("Loop", () => {
-  test("promDo", () => {
+  test("promWhile", () => {
     expect.assertions(1);
     let test: string = "";
     let iterator: number = 0;
     let max: number = 2;
 
-    return promDo({
+    return promWhile({
       condition: async () => {
-        test += "c";
-        return iterator++ < max;
+        if (iterator < max) test += "c";
+        return iterator < max;
       },
       promise: async () => {
         test += iterator;
+        iterator++;
       }
     }).then(() => {
       let testManual: string = "";
       let iteratorManual: number = 0;
 
-      do {
-        testManual += iteratorManual;
-        testManual += "c";
-      } while (iteratorManual++ < max);
+      while (iteratorManual < max) {
+        testManual += "c" + iteratorManual;
+
+        iteratorManual++;
+      }
 
       expect(test).toEqual(testManual);
     });
