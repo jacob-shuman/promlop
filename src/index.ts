@@ -8,4 +8,8 @@ export namespace Promlop {
   export const While = promWhile;
 }
 
+export {promDo} from "./promDo";
+export {promFor} from "./promFor";
+export {promWhile} from "./promWhile";
+
 export default Promlop;

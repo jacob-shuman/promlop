@@ -1,8 +1,7 @@
-export function promDo(options: { promise: () => Promise<{ continue: boolean }> }): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    const data = await options.promise();
-
-    if (data.continue) promDo(options).then(() => resolve());
-    else resolve();
-  });
+export async function promDo(options: {
+  condition: () => Promise<boolean>;
+  promise: () => Promise<void>;
+}) {
+  await options.promise();
+  if (await options.condition()) await promDo(options);
 }

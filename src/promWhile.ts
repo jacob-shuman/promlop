@@ -1,11 +1,9 @@
-export function promWhile(options: {
-  condition: boolean;
-  promise: () => Promise<any>;
-}): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    if (data.continue) promWhile(options).then(() => resolve());
-    else resolve();
-
-    const data = await options.promise();
-  });
+export async function promWhile(options: {
+  condition: () => Promise<boolean>;
+  promise: () => Promise<void>;
+}) {
+  if (await options.condition()) {
+    await options.promise();
+    await promWhile(options);
+  }
 }
