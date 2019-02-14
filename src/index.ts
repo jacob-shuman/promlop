@@ -1,11 +1,11 @@
-import { promDo } from "./promDo";
-import { promFor } from "./promFor";
-import { promWhile } from "./promWhile";
+import {promDo} from "./promDo";
+import {promFor} from "./promFor";
+import {promWhile} from "./promWhile";
 
 export namespace Promlop {
-  export const doLoop = promDo;
-  export const forLoop = promFor;
-  export const whileLoop = promWhile;
+  export const Do = promDo;
+  export const For = promFor;
+  export const While = promWhile;
 }
 
 export default Promlop;
