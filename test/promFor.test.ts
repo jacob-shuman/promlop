@@ -15,7 +15,11 @@ describe("Loop", () => {
         test = test + iterator;
       }
     }).then(() => {
-      expect(test).toEqual("012");
+      let testManual: string = "";
+
+      for (i = 0; i < max; i++) testManual += i;
+
+      expect(test).toEqual(testManual);
     });
   });
 });
