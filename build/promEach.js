@@ -11,7 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function promEach(options) {
     return __awaiter(this, void 0, void 0, function* () {
         if (options.promises.length > 0) {
-            options.each(yield options.promises[0]());
+            if (options.each)
+                options.each(yield options.promises[0]());
             options.promises.shift();
             yield promEach(options);
         }
