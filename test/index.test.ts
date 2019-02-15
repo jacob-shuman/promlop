@@ -1,4 +1,4 @@
-import { promLoop, promIterate } from "../src/index";
+import {promLoop, promIterate} from "../src/index";
 
 describe("Loop", () => {
   test("Basic Loop", () => {
@@ -11,7 +11,7 @@ describe("Loop", () => {
       promise: async () => {
         test += `index ${i}\n`;
         i++;
-        return { continue: i < max };
+        return {continue: i < max};
       }
     }).then(() => {
       let demo = "";
@@ -24,37 +24,25 @@ describe("Loop", () => {
 });
 
 describe("Iterate", () => {
-  let firstPromise = async (context: {
-    data?: { test: string };
-    index: number;
-  }) => {
-    context.data = { test: "asdf" };
-    console.log("First promise");
-    return { data: context.data };
+  let firstPromise = async (context: {data?: {test: string}; index: number}) => {
+    context.data = {test: "asdf"};
+    return {data: context.data};
   };
 
-  let secondPromise = async (context: {
-    data?: { test: string };
-    index: number;
-  }) => {
-    console.log("Second promise");
-    return { data: context.data };
+  let secondPromise = async (context: {data?: {test: string}; index: number}) => {
+    return {data: context.data};
   };
 
-  let thirdPromise = async (context: {
-    data?: { test: string };
-    index: number;
-  }) => {
-    console.log("Third promise");
-    return { data: context.data };
+  let thirdPromise = async (context: {data?: {test: string}; index: number}) => {
+    return {data: context.data};
   };
 
   test("Basic Iterate", () => {
     expect.assertions(1);
-    return promIterate<{ test: string }>({
+    return promIterate<{test: string}>({
       promises: [firstPromise]
-    }).then((data: { test: string }) => {
-      expect(data).toEqual({ test: "asdf" });
+    }).then((data: {test: string}) => {
+      expect(data).toEqual({test: "asdf"});
     });
   });
   test("Index Over Bounds", () => {

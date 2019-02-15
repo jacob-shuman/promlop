@@ -1,39 +1,24 @@
-export function promLoop(options: {
-  promise: () => Promise<{ continue: boolean }>;
-}): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    const data = await options.promise();
+import {promLoop} from "./promLoop";
+import {promIterate} from "./promIterate";
 
-    if (data.continue) promLoop(options).then(() => resolve());
-    else resolve();
-  });
+import {promDo} from "./promDo";
+import {promFor} from "./promFor";
+import {promWhile} from "./promWhile";
+import {promEach} from "./promEach";
+
+export namespace Promlop {
+  export const Do = promDo;
+  export const For = promFor;
+  export const While = promWhile;
+  export const Each = promEach;
 }
 
-export function promIterate<T>(options: {
-  promises: Array<
-    (context: { data?: T; index: number }) => Promise<{ data?: T }>
-  >;
-  data?: T;
-  index?: number;
-}): Promise<T> {
-  return new Promise(async (resolve, reject) => {
-    options.index = options.index || 0;
+export {promLoop} from "./promLoop";
+export {promIterate} from "./promIterate";
 
-    if (options.index >= options.promises.length)
-      reject("Index over number of promises");
-    else if (options.index < 0) reject("Index cannot be less than 0");
-    else if (options.index < options.promises.length) {
-      const context: { data?: T } = await options.promises[options.index++]({
-        data: options.data,
-        index: options.index
-      });
+export {promDo} from "./promDo";
+export {promFor} from "./promFor";
+export {promWhile} from "./promWhile";
+export {promEach} from "./promEach";
 
-      options.data = context.data;
-      if (options.index < options.promises.length) {
-        promIterate(options).then(() => resolve(options.data));
-      } else {
-        resolve(options.data);
-      }
-    }
-  });
-}
+export default Promlop;
