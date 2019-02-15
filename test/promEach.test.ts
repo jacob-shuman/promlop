@@ -4,7 +4,7 @@ describe("Loop", () => {
   test("promEach", () => {
     expect.assertions(1);
     let testString: string = "";
-    let testPromises = [
+    let testPromises: Array<() => Promise<any>> = [
       async () => {
         testString += "a";
       },
@@ -21,7 +21,7 @@ describe("Loop", () => {
 
     return promEach({
       promises: testPromises,
-      each: async (promise: Promise<any>) => {}
+      each: async (result: any) => {}
     }).then(() => {
       expect(testString).toEqual("abcd");
     });
