@@ -1,6 +1,6 @@
 {
   "name": "promlop",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An easy to use zero-dependency vanilla promise loop utility.",
   "main": "build/index.js",
   "types": "build/index.js",
